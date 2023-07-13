@@ -25,7 +25,7 @@ Adds a z-endstop, but still homes with tap. No reference index required.
 
 
 ## Installation:
-####**ATTENTION! Use at your own RISK!**
+**ATTENTION! Use at your own RISK!**
 
 ### Installing the endstop:
 This depends on the endstop you are using. Currently there are 2 options:
@@ -203,11 +203,11 @@ Just start your first print as usual. Check that your AUTO_OFFSET macro is added
 
 
 ## Current “Safety Features”:
-##### - Crash detection if you miss the endstop or something is not connected right.
-##### - Maximal adjustment (+/-0,5mm default)
-##### - Maximal deviation between samples (0,005mm default)
-##### - You can only use AUTO_OFFSET and THERMAL_COMPENSATION_CALIBRATION. Submacros for calculations can’t be used directly
-##### - Unable to home via endstop if hotend is below 150°C (to squish ooze away)
++ Crash detection if you miss the endstop or something is not connected right.
++ Maximal adjustment (+/-0,5mm default)
++ Maximal deviation between samples (0,005mm default)
++ You can only use AUTO_OFFSET and THERMAL_COMPENSATION_CALIBRATION. Submacros for calculations can’t be used directly
++ Unable to home via endstop if hotend is below 150°C (to squish ooze away)
 
 
 
