@@ -69,7 +69,7 @@ You may have to clean your nozzle to get connection with your wire. Use QUERY_EN
 + Change your homing speed to 0.5mm/s or slower.
 + Change your second homing speed to 0.05mm/s
 + Change your retract distance to 0.1mm
-**Example:**
+##### **Example:**
 ```
 [stepper_z]
 step_pin: PF11
@@ -118,7 +118,7 @@ The homing override calls some macros which should work for sensorless homing an
 
 #### <ins>Endstop Position</ins>
 You also have to set your endstop position in Z_ENDSTOP_POSITION! Similar as with the default Voron endstop. You can set this at the beginning of the Auto-Offset.cfg
-**Example:**
+##### **Example:**
 ```
 [gcode_macro POSITION_Z_ENDSTOP]
 description: Dummy macro to set the endstop position
@@ -138,7 +138,8 @@ All other variables/settings are explained in the Auto_Offset.cfg
 
 
 ### <ins>PRINT_START</ins>
-The last step is to add AUTO_OFFSET to your PRINT_START macro. Just add it between your quad gantry level and bed mesh leveling. You also have to specify the hotend temperature if thermal compensation is used. **For example:**
+The last step is to add AUTO_OFFSET to your PRINT_START macro. Just add it between your quad gantry level and bed mesh leveling. You also have to specify the hotend temperature if thermal compensation is used.
+##### **Example:**
 ```
 [gcode_macro PRINT_START]
 description: Perform calibration and get ready to print
