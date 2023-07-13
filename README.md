@@ -44,7 +44,7 @@ This is a bit more complicated and depends on your hotend. A **Dragon HF** for e
 I just wrapped some wire around one of the mounting bolts. Simple, but it works.
 ![1688649731782](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/436eb798-a63f-4144-8f68-e83508b941c4)
 ![1688649731812](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/03c98e2a-7090-4f1f-b36b-111d138f1c02)
-![1688649731802](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/9c55798c-b3cc-4524-b614-6ac1539370b9)
+![Uploading 1688649731772.jpg…]()
 
 For the **Bamabu Hotend** I just used a M2,5 screw on my printhead.
 
