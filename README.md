@@ -45,7 +45,7 @@ For the **Bamabu Hotend** I just used a M2,5 screw on my printhead.
 
 **DO NOT ATTACH ANY WIRE DIRECTLY TO THE HEATER BLOCK!** At first glance this will work just fine, but the wire will oxidize over time which causes poor conductivity and a lot of problems.
 
-#### **Attention!**
+**Attention!**
 Don't let any positive wire touch your hotend. If a 24V wire touches your hotend (5V endstop) you may short out your board!
 Also make sure your endstop GND is isolated from the bed/frame Ground. While theoretically nothing should happen I still don’t recommend connecting them.
 
