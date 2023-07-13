@@ -1,6 +1,6 @@
 **Readme is still Work in Progress!**
 
-## How does Auto-Offset work?
+## <ins>How does Auto-Offset work?</ins>
 The endstop is connected to GND and the nozzle is connected to a endstop pin.
 If the nozzle touches the endstop pin the loop closes and the endstop triggers.
 It's just a really simple switch. The real advantage is that there is no switch pre travel (like with AutoZ for Klicky)
@@ -13,33 +13,33 @@ The additional offset is required since you want some distance between the nozzl
 The thermal expansion compensation is an additional feature, which you can use in order to compensate for different extruder temperatures. Since you do all your calibration at a probing temperature (150°C), the actual nozzle position changes a tiny bit when heated to a different printing temperature due to thermal expansion. Where talking about values around 0,02mm between PLA temperatures (215°C) and ABS temperatures (260°C)
 This is not nearly enough to turn a good first layer to a bad one, but it’s enough to turn a perfect first layer into a good first layer.
 
-The adjustment is done via GCODE_OFFSET since you cannot edit the probe offset without restarting klipper. (The same way AutoZ for Klicky does it)
+The adjustment is done via GCODE_OFFSET since you cannot edit the probe offset without restarting Klipper. (The same way AutoZ for Klicky does it)
 
 #### **Is this a polished mod?**
 **NO!** I use this method now for a while on my V2.4R2 with good results. I further polished it over the last months and rewrote the complete macro for V2.
 
 **Features:**
-Automatic calibration of the first layer once configured correctly
-Multiple “offset correction” values for different print surfaces (textured, smooth) which you can easily select via a macro.
-Automatic calibration and calculation of your hotend expansion factor between different temperatures (optional but recommended)
-Adds a z-endstop, but still homes with tap. No reference index required.
++ Automatic calibration of the first layer once configured correctly
++ Multiple “offset correction” values for different print surfaces (textured, smooth) which you can easily select via a macro
++ Automatic calibration and calculation of your hotend thermal expansion factor (optional but recommended)
++ Adds a z-endstop, but still homes with tap. No reference index required
 
 
 
-## Installation
+## <ins>Installation</ins>
 **ATTENTION! Use at your own RISK!**
 
-### Installing the endstop
+### <ins>Installing the endstop</ins>
 This depends on the endstop you are using. Currently there are 2 options:
 
 **Modified Voron Endstop:** (Coming soon)
 **Machined hex bolt:** (Only available for beta testers)
 
-#### Connecting the endstop**
+### <ins>Connecting the endstop</ins>
 Crimp a connector to the wire and connect the endstop to any GND endstop connection.
 
 
-### Connecting the nozzle/hotend to a endstop pin
+### <ins>Connecting the Nozzle/Hotend to a Endstop Pin</ins>
 This is a bit more complicated and depends on your hotend. A **Dragon HF** for example needs some “scratching” where the spacers go into the heatsink in order to get a proper connection.
 I just wrapped some wire around one of the mounting bolts. Simple, but it works.
 ![1688649731782](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/436eb798-a63f-4144-8f68-e83508b941c4)
@@ -61,10 +61,10 @@ You may have to clean your nozzle to get connection with your wire. Use QUERY_EN
 
 
 
-## Macro Installation
+## <ins>Macro Installation</ins>
 #### **Create a backup of your configs before changing anything!**
 
-### z_stepper Changes
+### <ins>[z_stepper] Changes</ins>
 Change your endstop pin to the one connected to the hotend/nozzle
 Change your homing speed to 0.5mm/s or slower.
 Change your second homing speed to 0.05mm/s
@@ -94,14 +94,14 @@ For default homing we’ll use Tap instead of the endstop. So the slow speeds do
 
 
 
-## Setting up Configs
+## <ins>Setting up Configs</ins>
 
-### Include Auto-Offset.cfg
+### Include Auto_Offset.cfg
 Copy Auto_Offset.cfg to your config folder.
 Add ```[include Auto_Offset.cfg]``` to your printer.cfg.
 
 
-### Homing Override
+### <ins>Homing Override</ins>
 In order to use AutoZ you have to add a homing override.
 This adds the function to either home with tap or your endstop.
 ##### **G28 Z & G28 -> Tap**
@@ -114,9 +114,9 @@ The homing override calls some macros which should work for sensorless homing an
 
 
 
-### Auto_Offset.cfg Settings
+### <ins>Auto_Offset.cfg Settings</ins>
 
-#### Endstop Position
+#### <ins>Endstop Position</ins>
 You also have to set your endstop position in Z_ENDSTOP_POSITION! Similar as with the default Voron endstop. You can set this at the beginning of the Auto-Offset.cfg
 **Example:**
 ```
@@ -128,16 +128,16 @@ gcode:
 
 ```
 
-#### Clean Nozzle Macro
+#### <ins>Clean Nozzle Macro</ins>
 It’s important to set your nozzle cleaning macro (Default:”CLEAN_NOZZLE”)
 This will be used when running ```AUTO_OFFSET```
 
-#### More Settings…
+#### <ins>More Settings…</ins>
 All other variables/settings are explained in the Auto_Offset.cfg
 
 
 
-### PRINT_START
+### <ins>PRINT_START</ins>
 The last step is to add AUTO_OFFSET to your PRINT_START macro. Just add it between your quad gantry level and bed mesh leveling. You also have to specify the hotend temperature if thermal compensation is used. **For example:**
 ```
 [gcode_macro PRINT_START]
@@ -191,25 +191,25 @@ gcode:
 
 
 
-## Getting started
+## <ins>Getting started</ins>
 First I recommend doing a PROBE_CALIBRATE if you never calibrated your offset before.
 
-### Thermal Compensation (optional but recommended):
+### <ins>Thermal Compensation</ins> (optional but recommended):
 If you want to use thermal compensation, start the calibration with THERMAL_COMPENSATION_CALIBRATION. **It’s really important that your printer is at ambient temperature!** or your values will be off.
 This can take a while, depending on your hotend heating and cooling performance.
 At the end you get your hotend specific value in the console. Copy this value and add it to the ```Auto_Offset.cfg``` (variable_thermal_expansion).
 
 
-### Auto Offset
+### <ins>Auto Offset</ins>
 For  Auto Offset you may have to fine tune the values specified in the plate macros. Different plates and first layer settings may need different first layer squish. You can also fine tune them to your personal preference.
 You can also create a new plate preset by copy&paste a existent one. Don’t forget to rename everything! You can create as many plates as you like.
 
 
-### First Print
+### <ins>First Print</ins>
 Just start your first print as usual. Check that your AUTO_OFFSET macro is added to the PRINT_START macro correctly. Be ready to press the emergency button at any time. Just in case. You can still live adjust your offset. But don’t forget to apply any +/- changes to the print plate specific correction value.
 
 
-## Current “Safety Features”
+## <ins>Safety Features</ins>
 + Crash detection if you miss the endstop or something is not connected right.
 + Maximal adjustment (+/-0,5mm default)
 + Maximal deviation between samples (0,005mm default)
@@ -218,7 +218,7 @@ Just start your first print as usual. Check that your AUTO_OFFSET macro is added
 
 
 
-## Misc (FAQ)
+## <ins>Misc (FAQ)</ins>
 ##### Should I use a reference index for my bed mehs?
 NO! This can cause serious problems or even damage!
 
@@ -239,6 +239,8 @@ Because I have no clue how to code python. Also my macro skills are limited. Put
 
 ##### **Why is this not a single macro?**
 Because Klipper macros can be really weird where lines get executed before the ones above them aren’t finished. This results in wrong calculations and values. By splitting the macro you can prevent this behavior. At this size it’s also easier to work with single macro snippets instead of one single big macro.
+
+
 
 
 
