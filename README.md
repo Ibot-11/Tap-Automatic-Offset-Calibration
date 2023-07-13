@@ -65,10 +65,10 @@ You may have to clean your nozzle to get connection with your wire. Use QUERY_EN
 #### **Create a backup of your configs before changing anything!**
 
 ### <ins>[z_stepper] Changes</ins>
-Change your endstop pin to the one connected to the hotend/nozzle
-Change your homing speed to 0.5mm/s or slower.
-Change your second homing speed to 0.05mm/s
-Change your retract distance to 0.1mm
++ Change your endstop pin to the one connected to the hotend/nozzle
++ Change your homing speed to 0.5mm/s or slower.
++ Change your second homing speed to 0.05mm/s
++ Change your retract distance to 0.1mm
 **Example:**
 ```
 [stepper_z]
