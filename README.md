@@ -1,3 +1,5 @@
+**Readme is still Work in Progress!**
+
 ## How does Auto-Offset work?
 The endstop is connected to GND and the nozzle is connected to a endstop pin.
 If the nozzle touches the endstop pin the loop closes and the endstop triggers.
@@ -40,10 +42,15 @@ Crimp a connector to the wire and connect the endstop to any GND endstop connect
 ### Connecting the nozzle/hotend to a endstop pin
 This is a bit more complicated and depends on your hotend. A **Dragon HF** for example needs some “scratching” where the spacers go into the heatsink in order to get a proper connection.
 I just wrapped some wire around one of the mounting bolts. Simple, but it works.
+![1688649731782](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/93735b7c-c3ff-4d7d-8ec5-3838d87f90c6)
+![1688649731812](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/03c98e2a-7090-4f1f-b36b-111d138f1c02)
+![1688649731802](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/9c55798c-b3cc-4524-b614-6ac1539370b9)
 
 For the **Bamabu Hotend** I just used a M2,5 screw on my printhead.
 
 **DO NOT ATTACH ANY WIRE DIRECTLY TO THE HEATER BLOCK!** At first glance this will work just fine, but the wire will oxidize over time which causes poor conductivity and a lot of problems.
+![1688649731762](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/e151a3c8-f0f0-48ad-8ea9-286baa037610)
+
 
 **Attention!**
 Don't let any positive wire touch your hotend. If a 24V wire touches your hotend (5V endstop) you may short out your board!
@@ -107,7 +114,7 @@ The homing override calls some macros which should work for sensorless homing an
 
 
 
-### Auto-Offset.cfg Settings
+### Auto_Offset.cfg Settings
 
 #### Endstop Position
 You also have to set your endstop position in Z_ENDSTOP_POSITION! Similar as with the default Voron endstop. You can set this at the beginning of the Auto-Offset.cfg
@@ -232,3 +239,6 @@ Because I have no clue how to code python. Also my macro skills are limited. Put
 
 ##### **Why is this not a single macro?**
 Because Klipper macros can be really weird where lines get executed before the ones above them aren’t finished. This results in wrong calculations and values. By splitting the macro you can prevent this behavior. At this size it’s also easier to work with single macro snippets instead of one single big macro.
+
+
+
