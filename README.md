@@ -26,10 +26,10 @@ Adds a z-endstop, but still homes with tap. No reference index required.
 
 
 
-## Installation:
+## Installation
 **ATTENTION! Use at your own RISK!**
 
-### Installing the endstop:
+### Installing the endstop
 This depends on the endstop you are using. Currently there are 2 options:
 
 **Modified Voron Endstop:** (Coming soon)
@@ -61,7 +61,7 @@ You may have to clean your nozzle to get connection with your wire. Use QUERY_EN
 
 
 
-## Macro Installation:
+## Macro Installation
 #### **Create a backup of your configs before changing anything!**
 
 ### z_stepper Changes
@@ -191,7 +191,7 @@ gcode:
 
 
 
-## Getting started:
+## Getting started
 First I recommend doing a PROBE_CALIBRATE if you never calibrated your offset before.
 
 ### Thermal Compensation (optional but recommended):
@@ -200,16 +200,16 @@ This can take a while, depending on your hotend heating and cooling performance.
 At the end you get your hotend specific value in the console. Copy this value and add it to the ```Auto_Offset.cfg``` (variable_thermal_expansion).
 
 
-### Auto Offset:
+### Auto Offset
 For  Auto Offset you may have to fine tune the values specified in the plate macros. Different plates and first layer settings may need different first layer squish. You can also fine tune them to your personal preference.
 You can also create a new plate preset by copy&paste a existent one. Don’t forget to rename everything! You can create as many plates as you like.
 
 
-### First Print:
+### First Print
 Just start your first print as usual. Check that your AUTO_OFFSET macro is added to the PRINT_START macro correctly. Be ready to press the emergency button at any time. Just in case. You can still live adjust your offset. But don’t forget to apply any +/- changes to the print plate specific correction value.
 
 
-## Current “Safety Features”:
+## Current “Safety Features”
 + Crash detection if you miss the endstop or something is not connected right.
 + Maximal adjustment (+/-0,5mm default)
 + Maximal deviation between samples (0,005mm default)
@@ -218,7 +218,7 @@ Just start your first print as usual. Check that your AUTO_OFFSET macro is added
 
 
 
-## Misc (FAQ):
+## Misc (FAQ)
 ##### Should I use a reference index for my bed mehs?
 NO! This can cause serious problems or even damage!
 
