@@ -210,6 +210,18 @@ You can also create a new plate preset by copy&paste a existent one. Don’t for
 Just start your first print as usual. Check that your AUTO_OFFSET macro is added to the PRINT_START macro correctly. Be ready to press the emergency button at any time. Just in case. You can still live adjust your offset. But don’t forget to apply any +/- changes to the print plate specific correction value.
 
 
+
+## <ins>Macro Parameters</ins>
+### <ins>Auto_Offset</ins>
++ EXTRUDER_TEMP - Used for thermal compensation. Must be defined
++ SAMPLES - Sample amount to probe
+
+### <ins>THERMAL_COMPENSATION_CALIBRATION</ins>
++ THERMAL_COMP_SAMPLES - Sample amount for hot/cold cycles
++ AUTO_OFFSET_SAMPLES - Sample amount for probes at probing temperature
+
+
+
 ## <ins>Safety Features</ins>
 + Crash detection if you miss the endstop or something is not connected right.
 + Maximal adjustment (+/-0,5mm default)
@@ -240,10 +252,3 @@ Because I have no clue how to code python. Also my macro skills are limited. Put
 
 **Why is this not a single macro?**
 Because Klipper macros can be really weird where lines get executed before the ones above them aren’t finished. This results in wrong calculations and values. By splitting the macro you can prevent this behavior. At this size it’s also easier to work with single macro snippets instead of one single big macro.
-
-
-
-
-
-
-
