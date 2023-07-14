@@ -1,4 +1,4 @@
-**Readme is still Work in Progress!**
+# **Readme and Macros are still Work in Progress!**
 
 ## <ins>How does Auto-Offset work?</ins>
 The endstop is connected to GND and the nozzle is connected to a endstop pin.
@@ -240,6 +240,8 @@ Because I have no clue how to code python. Also my macro skills are limited. Put
 
 **Why is this not a single macro?**
 Because Klipper macros can be really weird where lines get executed before the ones above them aren’t finished. This results in wrong calculations and values. By splitting the macro you can prevent this behavior. At this size it’s also easier to work with single macro snippets instead of one single big macro.
+
+
 
 
 
