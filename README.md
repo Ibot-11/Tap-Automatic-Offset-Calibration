@@ -197,7 +197,8 @@ First I recommend doing a PROBE_CALIBRATE if you never calibrated your offset be
 
 ### <ins>Thermal Compensation</ins> (optional but recommended):
 If you want to use thermal compensation, start the calibration with THERMAL_COMPENSATION_CALIBRATION. **It’s really important that your printer is at ambient temperature!** or your values will be off.
-This can take a while, depending on your hotend heating and cooling performance.
+I recommend loading ABS filament before doing the calibration. The hotend temperature increases up to 295°C for a short time. PLA will degrade at this temperature and can cause clogs.
+The calibration will take a while, depending on your hotend heating and cooling performance.
 At the end you get your hotend specific value in the console. Copy this value and add it to the ```Auto_Offset.cfg``` (variable_thermal_expansion).
 
 
