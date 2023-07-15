@@ -42,14 +42,15 @@ Crimp a connector to the wire and connect the endstop to any GND endstop connect
 ### <ins>Connecting the Nozzle/Hotend to a Endstop Pin</ins>
 This is a bit more complicated and depends on your hotend. A **Dragon HF** for example needs some “scratching” where the spacers go into the heatsink in order to get a proper connection.
 I just wrapped some wire around one of the mounting bolts. Simple, but it works.
-![1688649731782](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/436eb798-a63f-4144-8f68-e83508b941c4)
-![1688649731812](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/03c98e2a-7090-4f1f-b36b-111d138f1c02)
-![1688649731772](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/37ddc873-1af6-49a8-92dd-a7e756bfbf92)
+![1688649731782](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/01879875-e808-4daa-a37d-068a120869a4)
+![1688649731812](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/61e5e405-81f7-46bd-9643-6f6df0ef1417)
+![1688649731772](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/700c585f-636e-4b11-bc20-4e8c8a5133b6)
+
 
 For the **Bamabu Hotend** I just used a M2,5 screw on my printhead.
 
 **DO NOT ATTACH ANY WIRE DIRECTLY TO THE HEATER BLOCK!** At first glance this will work just fine, but the wire will oxidize over time which causes poor conductivity and a lot of problems.
-![1688649731762](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/e151a3c8-f0f0-48ad-8ea9-286baa037610)
+![1688649731762](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/523a02fc-d4ee-4753-8a59-a0fd66557f14)
 
 
 **Attention!**
