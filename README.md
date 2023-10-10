@@ -241,23 +241,23 @@ Just start your first print as usual. Check that your AUTO_OFFSET or AUTO_OFFSET
   
   
 ## <ins>Misc (FAQ)</ins>
-##### Should I use a reference index for my bed mehs?
+##### Should I use a reference index for my bed mehs?  
 NO! This can cause serious problems or even damage!
   
-**Why do you use a machined hex bolt?**
+**Why do you use a machined hex bolt?**  
 Theoretically a endstop pin like the default Voron endstop should work. But I really hate centering my nozzle on this tiny pin. The hex bolt just gives you much more surface to work with.
   
-**Does this work with adaptive mesh like KAMP?**
+**Does this work with adaptive mesh like KAMP?**  
 Of course! I also use it with KAMP.
   
-**Which nozzles / hotends work?**
+**Which nozzles / hotends work?**  
 Pretty much every hotend / nozzle which is conductive. Just check the conductivity with a multimeter and also ensure your endstop triggers by bridging the endstop and nozzle with a wire. I currently use a Bambu Hotend (Clone) with CHT steel nozzle
   
-**Does this work with a Klicky probe?**
+**Does this work with a Klicky probe?**  
 No. Only nozzle probes like tap are supported
   
-**Why is this a macro and not a python script?**
+**Why is this a macro and not a python script?**  
 Because I have no clue how to code python. Also my macro skills are limited. Putting together the macros already was a challenge for me.
   
-**Why is this not a single macro?**
+**Why is this not a single macro?**  
 Because Klipper macros can be really weird where lines get executed before the ones above them aren’t finished. This results in wrong calculations and values. By splitting the macro you can prevent this behavior. At this size it’s also easier to work with single macro snippets instead of one single big macro.
