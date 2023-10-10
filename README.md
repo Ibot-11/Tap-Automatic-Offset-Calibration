@@ -11,7 +11,7 @@ The additional offset is required since you want some distance between the nozzl
 The adjustment is done via GCODE_OFFSET since you cannot edit the probe offset without restarting Klipper. (The same way AutoZ for Klicky does it)  
   
 #### **Is this a polished mod?**
-**NO!** I use this method now for a while on my V2.4R2 with good results. I further polished it over the last months and rewrote the complete macro for V2.  
+**NO!** I use this method now for a while on two V2.4R2 with good results. I further polished it over the last months, rewrote the complete macro for V2 and added new features.  
   
 **Features:**
 + Automatic calibration of the first layer once configured correctly
