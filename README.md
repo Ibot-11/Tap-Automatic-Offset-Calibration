@@ -241,7 +241,7 @@ Just start your first print as usual. Check that your AUTO_OFFSET or AUTO_OFFSET
 + EXTRUDER_TEMP - Used for dynamic probe temperature. Must be defined
 + SAMPLES - Sample amount to probe
 
-### <ins>Auto_Offset</ins>
+### <ins>Auto_Offset_Start</ins>
 + EXTRUDER_TEMP - Used to set temperatures. Must be defined
 + BED_TEMP - Used to set temperatures. Must be defined
 
