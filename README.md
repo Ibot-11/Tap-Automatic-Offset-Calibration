@@ -1,4 +1,4 @@
-# **Readme and Macros are still Work in Progress!**
+# **Readme and Macros are still Work in Progress!**  
 
 ## <ins>How does Auto-Offset work?</ins>
 The endstop is connected to GND and the nozzle is connected to a endstop pin.
@@ -6,15 +6,13 @@ If the nozzle touches the endstop pin the loop closes and the endstop triggers.
 It's just a really simple switch. The real advantage is that there is no switch pre travel (like with AutoZ for Klicky)
 
 #### **Okay, but how can I calibrate my Z-offset with this?**
-First you home your nozzle on the endstop. Next you do some probes on top of the endstop. With this relative distance between the endstop trigger point and the probe trigger point (+ an additional offset) you can calculate the Z-offset.
-
-The additional offset is required since you want some distance between the nozzle and bed when you are at Z0. Otherwise your nozzle would touch your bed when at Z0
-
-The adjustment is done via GCODE_OFFSET since you cannot edit the probe offset without restarting Klipper. (The same way AutoZ for Klicky does it)
+First you home your nozzle on the endstop. Next you do some probes on top of the endstop. With this relative distance between the endstop trigger point and the probe trigger point (+ an additional offset) you can calculate the Z-offset.  
+The additional offset is required since you want some distance between the nozzle and bed when you are at Z0. Otherwise your nozzle would touch your bed when at Z0  
+The adjustment is done via GCODE_OFFSET since you cannot edit the probe offset without restarting Klipper. (The same way AutoZ for Klicky does it)  
 
 #### **Is this a polished mod?**
-**NO!** I use this method now for a while on my V2.4R2 with good results. I further polished it over the last months and rewrote the complete macro for V2.
-
+**NO!** I use this method now for a while on my V2.4R2 with good results. I further polished it over the last months and rewrote the complete macro for V2.  
+  
 **Features:**
 + Automatic calibration of the first layer once configured correctly
 + Multiple “offset correction” values for different print surfaces (textured, smooth) which you can easily select via a macro
@@ -29,8 +27,8 @@ The adjustment is done via GCODE_OFFSET since you cannot edit the probe offset w
 ### <ins>Installing the endstop</ins>
 This depends on the endstop you are using. Currently there are 2 options:
 
-**Modified Voron Endstop:** (Coming soon)
-**Machined hex bolt:** (Only available for beta testers)
+**Modified Voron Endstop:** (Coming soon)  
+**Machined hex bolt:** (Only available for beta testers)  
 
 ### <ins>Connecting the endstop</ins>
 Crimp a connector to the wire and connect the endstop to any GND endstop connection.
@@ -57,11 +55,11 @@ For the **Bamabu Hotend** I just used a M2,5 screw on my printhead.
 
 
 **Attention!**
-Don't let any positive wire touch your hotend. If a 24V wire touches your hotend (5V endstop) you may short out your board!
-Also make sure your endstop GND is isolated from the bed/frame Ground. While theoretically nothing should happen I still don’t recommend connecting them.
+Don't let any positive wire touch your hotend. If a 24V wire touches your hotend (5V endstop) you may short out your board!  
+Also make sure your endstop GND is isolated from the bed/frame Ground. While theoretically nothing should happen I still don’t recommend connecting them.  
 
-**Check if your endstop works** by using a wire before running any macros/commands.
-You may have to clean your nozzle to get connection with your wire. Use QUERY_ENDSTOPS to get the endstop state.
+**Check if your endstop works** by using a wire before running any macros/commands.  
+You may have to clean your nozzle to get connection with your wire. Use QUERY_ENDSTOPS to get the endstop state.  
 
 
 
@@ -226,12 +224,12 @@ gcode:
 ## <ins>Getting started</ins>
 First I recommend doing a PROBE_CALIBRATE if you never calibrated your offset before.
 
-### <ins>Auto Offset</ins>
+#### <ins>Auto Offset</ins>
 For  Auto Offset you may have to fine tune the values specified in the plate macros. Different plates and first layer settings may need different first layer squish. You can also fine tune them to your personal preference.
 You can also create a new plate preset by copy & paste an existing one. Don’t forget to rename everything! You can create as many plates as you like.
 
 
-### <ins>First Print</ins>
+#### <ins>First Print</ins>
 Just start your first print as usual. Check that your AUTO_OFFSET or AUTO_OFFSET_START macro is added to the PRINT_START macro correctly. Be ready to press the emergency button at any time. Just in case. You can still live adjust your offset. But don’t forget to apply any +/- changes to the print plate specific correction value.
 
 
