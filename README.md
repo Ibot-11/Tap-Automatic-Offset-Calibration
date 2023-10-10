@@ -6,12 +6,9 @@ If the nozzle touches the endstop pin the loop closes and the endstop triggers.
 It's just a really simple switch. The real advantage is that there is no switch pre travel (like with AutoZ for Klicky)
 
 #### **Okay, but how can I calibrate my Z-offset with this?**
-First you home your nozzle on the endstop. Next you do some probes on top of the endstop. With this relative distance between the endstop trigger point and the probe trigger point (+ an additional offset and thermal expansion compensation value) you can calculate the Z-offset.
+First you home your nozzle on the endstop. Next you do some probes on top of the endstop. With this relative distance between the endstop trigger point and the probe trigger point (+ an additional offset) you can calculate the Z-offset.
 
 The additional offset is required since you want some distance between the nozzle and bed when you are at Z0. Otherwise your nozzle would touch your bed when at Z0
-
-The thermal expansion compensation is an additional feature, which you can use in order to compensate for different extruder temperatures. Since you do all your calibration at a probing temperature (150°C), the actual nozzle position changes a tiny bit when heated to a different printing temperature due to thermal expansion. Where talking about values around 0,02mm between PLA temperatures (215°C) and ABS temperatures (260°C)
-This is not nearly enough to turn a good first layer to a bad one, but it’s enough to turn a perfect first layer into a good first layer.
 
 The adjustment is done via GCODE_OFFSET since you cannot edit the probe offset without restarting Klipper. (The same way AutoZ for Klicky does it)
 
@@ -21,7 +18,7 @@ The adjustment is done via GCODE_OFFSET since you cannot edit the probe offset w
 **Features:**
 + Automatic calibration of the first layer once configured correctly
 + Multiple “offset correction” values for different print surfaces (textured, smooth) which you can easily select via a macro
-+ Automatic calibration and calculation of your hotend thermal expansion factor (optional but recommended)
++ Dynamic probing temperature. Example: PLA -> 150°C; ABS -> 180°C (Increases accuracy and compensates for thermal expansion)
 + Adds a z-endstop, but still homes with tap. No reference index required
 
 
@@ -53,6 +50,12 @@ For the **Bamabu Hotend** I just used a M2,5 screw on my printhead.
 ![1688649731762](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/523a02fc-d4ee-4753-8a59-a0fd66557f14)
 
 
+For the **Bamabu Hotend** I just used a M2,5 screw on my printhead.
+
+**DO NOT ATTACH ANY WIRE DIRECTLY TO THE HEATER BLOCK!** At first glance this will work just fine, but the wire will oxidize over time which causes poor conductivity and a lot of problems.
+![1688649731762](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/e151a3c8-f0f0-48ad-8ea9-286baa037610)
+
+
 **Attention!**
 Don't let any positive wire touch your hotend. If a 24V wire touches your hotend (5V endstop) you may short out your board!
 Also make sure your endstop GND is isolated from the bed/frame Ground. While theoretically nothing should happen I still don’t recommend connecting them.
@@ -68,7 +71,7 @@ You may have to clean your nozzle to get connection with your wire. Use QUERY_EN
 ### <ins>[z_stepper] Changes</ins>
 + Change your endstop pin to the one connected to the hotend/nozzle
 + Change your homing speed to 0.5mm/s or slower.
-+ Change your second homing speed to 0.05mm/s
++ Change your second homing speed to 0.05mm/s or slower
 + Change your retract distance to 0.1mm
 ##### **Example:**
 ```
@@ -131,7 +134,8 @@ gcode:
 
 #### <ins>Clean Nozzle Macro</ins>
 It’s important to set your nozzle cleaning macro (Default:”CLEAN_NOZZLE”)
-This will be used when running ```AUTO_OFFSET```
+This will be used when running ```AUTO_OFFSET```  
+**It’s important that your nozzle cleaning macro lifts the nozzle after cleaning by at least 5mm!**
 
 #### <ins>More Settings…</ins>
 All other variables/settings are explained in the Auto_Offset.cfg
@@ -139,7 +143,32 @@ All other variables/settings are explained in the Auto_Offset.cfg
 
 
 ### <ins>PRINT_START</ins>
-The last step is to add AUTO_OFFSET to your PRINT_START macro. Just add it between your quad gantry level and bed mesh leveling. You also have to specify the hotend temperature if thermal compensation is used.
+The last step is to add AUTO_OFFSET to your PRINT_START macro. There are two options:
+
+#### Option 1: AUTO_OFFSET_START (Recommended)
+AUTO_OFFSET_START is a macro package which you can insert into your PRINT_START macro. This package includes:
++ Printer homing
++ Heating to probe temperature
++ Quad gantry level
++ Auto-Offset
++ Bed mesh calibrate
++ Heting to printing temperature
++ Nozzle cleaning
+
+Requried parameters: EXTRUDER_TEMP and BED_TEMP
+
+##### **Example:**
+```
+ADD LATER
+```
+
+
+
+A PRINT_START could look like this if AUTO_OFFSET_START is used:
+
+#### Option 2: AUTO_OFFSET
+
+Just add it between your quad gantry level and bed mesh leveling. You also have to specify the hotend temperature for the dynamic probe temperature.
 ##### **Example:**
 ```
 [gcode_macro PRINT_START]
@@ -152,13 +181,12 @@ gcode:
 
     CLEAR_PAUSE
     BED_MESH_CLEAR
-    SETUP_KAMP_MESHING DISPLAY_PARAMETERS=1 FUZZ_ENABLE=1
-
-    SET_FAN_SPEED FAN=nevermore_fan SPEED=0
 
     M107
+
     M117 Homing..
     G28
+
     G90
     G0 X{th.axis_maximum.x//2} Y{th.axis_maximum.y - 10} Z30 F30000
     SET_HEATER_TEMPERATURE HEATER=extruder TARGET={PROBE_TEMP}
@@ -193,42 +221,38 @@ gcode:
 
 
 
+
+
 ## <ins>Getting started</ins>
 First I recommend doing a PROBE_CALIBRATE if you never calibrated your offset before.
 
-### <ins>Thermal Compensation</ins> (optional but recommended):
-If you want to use thermal compensation, start the calibration with THERMAL_COMPENSATION_CALIBRATION. **It’s really important that your printer is at ambient temperature!** or your values will be off.
-I recommend loading ABS filament before doing the calibration. The hotend temperature increases up to 295°C for a short time. PLA will degrade at this temperature and can cause clogs.
-The calibration will take a while, depending on your hotend heating and cooling performance.
-At the end you get your hotend specific value in the console. Copy this value and add it to the ```Auto_Offset.cfg``` (variable_thermal_expansion).
-
-
 ### <ins>Auto Offset</ins>
 For  Auto Offset you may have to fine tune the values specified in the plate macros. Different plates and first layer settings may need different first layer squish. You can also fine tune them to your personal preference.
-You can also create a new plate preset by copy&paste a existent one. Don’t forget to rename everything! You can create as many plates as you like.
+You can also create a new plate preset by copy & paste an existing one. Don’t forget to rename everything! You can create as many plates as you like.
 
 
 ### <ins>First Print</ins>
-Just start your first print as usual. Check that your AUTO_OFFSET macro is added to the PRINT_START macro correctly. Be ready to press the emergency button at any time. Just in case. You can still live adjust your offset. But don’t forget to apply any +/- changes to the print plate specific correction value.
+Just start your first print as usual. Check that your AUTO_OFFSET or AUTO_OFFSET_START macro is added to the PRINT_START macro correctly. Be ready to press the emergency button at any time. Just in case. You can still live adjust your offset. But don’t forget to apply any +/- changes to the print plate specific correction value.
 
 
 
 ## <ins>Macro Parameters</ins>
 ### <ins>Auto_Offset</ins>
-+ EXTRUDER_TEMP - Used for thermal compensation. Must be defined
++ EXTRUDER_TEMP - Used for dynamic probe temperature. Must be defined
 + SAMPLES - Sample amount to probe
 
-### <ins>THERMAL_COMPENSATION_CALIBRATION</ins>
-+ THERMAL_COMP_SAMPLES - Sample amount for hot/cold cycles
-+ AUTO_OFFSET_SAMPLES - Sample amount for probes at probing temperature
+### <ins>Auto_Offset</ins>
++ EXTRUDER_TEMP - Used to set temperatures. Must be defined
++ BED_TEMP - Used to set temperatures. Must be defined
 
 
 
-## <ins>Safety Features</ins>
+## <ins>(Safety) Features</ins>
 + Crash detection if you miss the endstop or something is not connected right.
 + Maximal adjustment (+/-0,5mm default)
 + Maximal deviation between samples (0,005mm default)
-+ You can only use AUTO_OFFSET and THERMAL_COMPENSATION_CALIBRATION. Submacros for calculations can’t be used directly
++ Retries if crash protection triggers or deviation exceeded
++ You can only use AUTO_OFFSET and AUTO_OFFSET_START. Submacros for calculations can’t be used directly
 + Unable to home via endstop if hotend is below 150°C (to squish ooze away)
 
 
