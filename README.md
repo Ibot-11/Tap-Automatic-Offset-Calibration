@@ -94,14 +94,14 @@ Copy Auto_Offset.cfg to your config folder.
 Add ```[include Auto_Offset.cfg]``` to your printer.cfg.
   
 ### <ins>Homing Override</ins>
-In order to use AutoZ you have to add a homing override.
-This adds the function to either home with tap or your endstop.
+In order to use AutoZ you have to add a homing override.  
+This adds the function to either home with tap or your endstop.  
 **G28 Z & G28 -> Tap**  
 **G28 P -> Tap (P for Probe)**  
 **G28 E -> Endstop (E for Endstop)**  
   
-The homing override calls some macros which should work for sensorless homing and normal sensor homing. These are based on the recommended sensorless homing macros by the Voron team.
-**You have to remove [safe_z_home] if defined in your config**
+The homing override calls some macros which should work for sensorless homing and normal sensor homing. These are based on the recommended sensorless homing macros by the Voron team.  
+**You have to remove [safe_z_home] if defined in your config**  
 [homing_override] is included in the Auto-Offset.cfg. No changes needed.
   
   
