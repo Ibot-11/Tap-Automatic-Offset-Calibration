@@ -137,6 +137,7 @@ The last step is to add AUTO_OFFSET to your PRINT_START macro. There are two opt
 AUTO_OFFSET_START is a macro package which you can insert into your PRINT_START macro. This package includes:
 + Printer homing
 + Heating to probe temperature
++ Nozzle cleaning
 + Quad gantry level
 + Auto-Offset
 + Bed mesh calibrate
@@ -150,7 +151,6 @@ Requried parameters: EXTRUDER_TEMP and BED_TEMP
 ADD LATER
 ```
   
-A PRINT_START could look like this if AUTO_OFFSET_START is used:
   
 #### Option 2: AUTO_OFFSET
   
@@ -234,7 +234,7 @@ Just start your first print as usual. Check that your AUTO_OFFSET or AUTO_OFFSET
 + Crash detection if you miss the endstop or something is not connected right.
 + Maximal adjustment (+/-0,5mm default)
 + Maximal deviation between samples (0,005mm default)
-+ Retries if crash protection triggers or deviation exceeded
++ Retry with extra nozzle cleaning if crash protection triggers
 + You can only use AUTO_OFFSET and AUTO_OFFSET_START. Submacros for calculations can’t be used directly
 + Unable to home via endstop if hotend is below 150°C (to squish ooze away)
   
@@ -254,7 +254,7 @@ Of course! I also use it with KAMP.
 Pretty much every hotend / nozzle which is conductive. Just check the conductivity with a multimeter and also ensure your endstop triggers by bridging the endstop and nozzle with a wire. I currently use a Bambu Hotend (Clone) with CHT steel nozzle
   
 **Does this work with a Klicky probe?**  
-No. Only nozzle probes like tap are supported
+No. Only nozzle probes like TAP are supported
   
 **Why is this a macro and not a python script?**  
 Because I have no clue how to code python. Also my macro skills are limited. Putting together the macros already was a challenge for me.
