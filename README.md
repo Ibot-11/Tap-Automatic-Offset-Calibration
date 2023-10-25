@@ -12,13 +12,23 @@ The adjustment is done via GCODE_OFFSET since you cannot edit the probe offset w
   
 #### **Is this a polished mod?**
 **NO!** I use this method now for a while on two V2.4R2 with good results. I further polished it over the last months, rewrote the complete macro for V2 and added new features.  
-  
-**Features:**
+
+## <ins>Demo Video</ins>
+[![Video](https://img.youtube.com/shorts/vMMA7r7aXLY/maxresdefault.jpg)](https://www.youtube.com/watch?v=vMMA7r7aXLY)
+
+## <ins>Features</ins>
 + Automatic calibration of the first layer once configured correctly
 + Multiple “offset correction” values for different print surfaces (textured, smooth) which you can easily select via a macro
 + Dynamic probing temperature. Example: PLA -> 150°C; ABS -> 180°C (Increases accuracy and compensates for thermal expansion)
 + Adds a z-endstop, but still homes with tap. No reference index required
-  
+
+**Safety Features**  
++ Crash detection if you miss the endstop or something is not connected right.
++ Maximal adjustment (+/-0.5mm default)
++ Maximal deviation between samples (0.008mm default)
++ Retry with extra nozzle cleaning if crash protection triggers
++ You can only use AUTO_OFFSET and AUTO_OFFSET_START. Submacros for calculations can’t be used directly
++ Unable to home via endstop if hotend is below 150°C (to squish ooze away)
   
   
 ## <ins>Installation</ins>
@@ -148,7 +158,22 @@ Requried parameters: EXTRUDER_TEMP and BED_TEMP
   
 ##### **Example:**
 ```
-ADD LATER
+[gcode_macro PRINT_START]
+description: Perform calibration and get ready to print
+gcode:
+    {% set EXTRUDER_TEMP = params.EXTRUDER_TEMP|float %}
+	  {% set BED_TEMP = params.BED_TEMP|float %}
+
+    CLEAR_PAUSE # clear any pause... again
+    BED_MESH_CLEAR # clear bed mesh
+
+    M107 # turn off part fan (heatsoak turned it on before)
+
+    AUTO_OFFSET_START EXTRUDER_TEMP={EXTRUDER_TEMP} BED_TEMP={BED_TEMP} # Parameters must be defined. This is a module of AUTO_OFFSET
+
+    LINE_PURGE # KAMP Purge
+
+    M117 # Clear status messages
 ```
   
   
@@ -187,7 +212,7 @@ gcode:
     G28 Z
 
     M117 Calibrating first layer..
-    AUTO_OFFSET PROBE_TEMP={PROBE_TEMP}
+    AUTO_OFFSET EXTRUDER_TEMP={EXTRUDER_TEMP}
 
     M117 Bed Mesh calibrate..
     BED_MESH_CALIBRATE
@@ -200,7 +225,7 @@ gcode:
     M117 Cleaning..
     CLEAN_NOZZLE
 
-    PURGE_LINE
+    LINE_PURGE # KAMP Purge
 
     M117
 ```
@@ -227,16 +252,6 @@ Just start your first print as usual. Check that your AUTO_OFFSET or AUTO_OFFSET
 ### <ins>Auto_Offset_Start</ins>
 + EXTRUDER_TEMP - Used to set temperatures. Must be defined
 + BED_TEMP - Used to set temperatures. Must be defined
-  
-  
-  
-## <ins>(Safety) Features</ins>
-+ Crash detection if you miss the endstop or something is not connected right.
-+ Maximal adjustment (+/-0,5mm default)
-+ Maximal deviation between samples (0,005mm default)
-+ Retry with extra nozzle cleaning if crash protection triggers
-+ You can only use AUTO_OFFSET and AUTO_OFFSET_START. Submacros for calculations can’t be used directly
-+ Unable to home via endstop if hotend is below 150°C (to squish ooze away)
   
   
   
