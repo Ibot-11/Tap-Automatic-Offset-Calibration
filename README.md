@@ -14,7 +14,7 @@ The adjustment is done via GCODE_OFFSET since you cannot edit the probe offset w
 **NO!** I use this method now for a while on two V2.4R2 with good results. I further polished it over the last months, rewrote the complete macro for V2 and added new features.  
 
 ## <ins>Demo Video</ins>
-[![Video](https://imgur.com/ZFL8DYg)](https://www.youtube.com/watch?v=vMMA7r7aXLY)
+[![Video](https://i.imgur.com/ZFL8DYg.png)](https://www.youtube.com/watch?v=vMMA7r7aXLY)
 
 ## <ins>Features</ins>
 + Automatic calibration of the first layer once configured correctly
