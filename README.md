@@ -38,7 +38,9 @@ The adjustment is done via GCODE_OFFSET since you cannot edit the probe offset w
 This depends on the endstop you are using. Currently there are 2 options:
   
 **Modified Voron Endstop:** (Coming soon)  
-**Machined hex bolt:** (Only available for beta testers)  
+**Machined hex bolt:** (Currently only available for beta testers)  
+![1698243237961](https://github.com/Ibot-11/Tap-Automatic-Offset-Calibration/assets/84148069/6081fa7c-d344-4299-bbc5-879f96ad33d3)
+
   
 ### <ins>Connecting the endstop</ins>
 Crimp a connector to the wire and connect the endstop to any GND endstop connection.
