@@ -1,4 +1,5 @@
 # **Readme and Macros are still Work in Progress!**  
+# **Paused due to other projects.**
 
 ## <ins>How does Auto-Offset work?</ins>
 The endstop is connected to GND and the nozzle is connected to a endstop pin.
@@ -11,7 +12,7 @@ The additional offset is required since you want some distance between the nozzl
 The adjustment is done via GCODE_OFFSET since you cannot edit the probe offset without restarting Klipper. (The same way AutoZ for Klicky does it)  
   
 #### **Is this a polished mod?**
-**NO!** I use this method now for a while on two V2.4R2 with good results. I further polished it over the last months, rewrote the complete macro for V2 and added new features.  
+**NO!** This is still a proof of concept and not something you should or can use as your default setup. There are still reliability issues which can’t be easily solved.  
 
 ## <ins>Demo Video</ins>
 [![Video](https://i.imgur.com/ZFL8DYg.png)](https://www.youtube.com/watch?v=vMMA7r7aXLY)
